@@ -5,8 +5,14 @@
  */
 package javaapplication6;
 
+import java.sql.Date;
 import javax.swing.JOptionPane;
-
+class detail{
+    String name;
+    int sal;
+    Date da;
+    
+}
 /**
  *
  * @author Administrator
