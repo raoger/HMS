@@ -5,6 +5,8 @@
  */
 package javaapplication6;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrator
@@ -201,6 +203,12 @@ public class NewJFrame1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name,gender,address;
         name = jTextField1.getText();
+        try{
+            int sal = Integer.parseInt(jTextField2.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this," ERRROR in INPUT at (SALARY) input should be number "+e.getMessage());
+        }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
