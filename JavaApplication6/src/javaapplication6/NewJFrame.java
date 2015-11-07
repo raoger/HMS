@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.Timestamp;
 /**
  *
  * @author Administrator
@@ -130,12 +130,26 @@ public class NewJFrame extends javax.swing.JFrame {
         String pass = jPasswordField1.getText();
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS","root","");
+            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS","root","enter");
             System.out.println("connectrd");
-            String sql = "insert into login values ('"+usr+"','"+pass+"',3)";
+            String sql = "select passwd from login where usrname = '"+usr+"';";
+            //String sql = "insert into login values ('"+usr+"','"+pass+"',3)";
             Statement st = c.createStatement();
             System.out.println("statement");
-            st.executeUpdate(sql);
+            //st.executeUpdate(sql);
+            ResultSet rs=st.executeQuery(sql);
+            String pwd = null;
+            while(rs.next()){
+            pwd=rs.getString("passwd");
+            }
+            int i=pwd.compareTo(pass);
+            if(i==0){
+                jLabel1.setText(pwd);
+            }
+           
+            else{
+                System.exit(0);
+            }
             System.out.println("e");
             
         } catch (ClassNotFoundException | SQLException ex) {
