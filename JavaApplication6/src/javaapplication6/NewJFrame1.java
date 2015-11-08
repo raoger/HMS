@@ -4,24 +4,18 @@
  * and open the template in the editor.
  */
 package javaapplication6;
-
-import java.sql.Date;
-import javax.swing.JOptionPane;
-class detail{
-    String name;
-    int sal;
-    Date da;
-   
-}
-/**
+import java.util.Date;
+import javax.swing.JOptionPane;/**
  *
  * @author Administrator
  */
-public class NewJFrame1 extends javax.swing.JFrame {
+public class NewJFrame1 extends javax.swing.JFrame{
 
     /**
      * Creates new form NewJFrame1
      */
+    detail det = new detail();
+    int a,b,c;
     public NewJFrame1() {
         initComponents();
     }
@@ -76,8 +70,18 @@ public class NewJFrame1 extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", " " }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Male");
@@ -225,10 +229,24 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        Date d = null;
-        d.setDate((int)jComboBox1.getSelectedItem());
-        System.out.println("combo Action true");
+        a=jComboBox1.getSelectedIndex();
+        System.out.println("combo"+a);
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        b=jComboBox2.getSelectedIndex();
+        System.out.println("combo"+b);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        c=jComboBox3.getSelectedIndex()+46;
+        
+        Date dat=new Date(c,b,a);
+        Date dec=new Date();
+        JOptionPane.showMessageDialog(this, "date updated "+dec+"test"+dat+"age : "+(dec.getYear()-dat.getYear()));
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,10 +274,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new NewJFrame1().setVisible(true);
             }
         });
