@@ -141,6 +141,7 @@ public class NewJFrame3 extends javax.swing.JFrame {
         ne.pid="patient_id";
         ne.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
