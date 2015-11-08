@@ -131,14 +131,15 @@ public class NewJFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS","root","enter");
-            System.out.println("connectrd");
+            System.out.println("connected");
             String sql = "select passwd,flag from login where usrname = '"+usr+"';";
             //String sql = "insert into login values ('"+usr+"','"+pass+"',3)";
-            Statement st = c.createStatement();
+            connect con=new connect();
+            Statement st = con.conn();
             System.out.println("statement");
             //st.executeUpdate(sql);
             ResultSet rs=st.executeQuery(sql);
-            int flag;
+            int flag=0;
             String pwd = null;
             while(rs.next()){
             pwd=rs.getString("passwd");
@@ -147,9 +148,11 @@ public class NewJFrame extends javax.swing.JFrame {
             int i=pwd.compareTo(pass);
             if(i==0){
                 jLabel1.setText(pwd);
-                NewJFrame2 pat= new NewJFrame2();
-                pat.setVisible(true);
-                this.setVisible(false);
+                if(flag==3){
+                    NewJFrame2 pat= new NewJFrame2();
+                    pat.setVisible(true);
+                    this.setVisible(false);
+                }
             }
            
             else{
