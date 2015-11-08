@@ -59,6 +59,11 @@ public class NewJFrame3 extends javax.swing.JFrame {
         jLabel5.setText("Diagnosis");
 
         jButton2.setText("Prescribe");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Test");
 
@@ -129,6 +134,14 @@ public class NewJFrame3 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        NewJFrame4 ne=new NewJFrame4();
+        ne.pid="patient_id";
+        ne.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -153,6 +153,14 @@ public class NewJFrame extends javax.swing.JFrame {
                     pat.setVisible(true);
                     this.setVisible(false);
                 }
+                else if(flag==1){
+                    NewJFrame3 doc=new NewJFrame3();
+                    doc.setVisible(true);
+                    this.setVisible(false);
+                }
+                else if(flag==2){
+                    
+                }
             }
            
             else{
