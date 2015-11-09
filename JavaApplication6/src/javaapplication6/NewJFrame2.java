@@ -65,6 +65,17 @@ public class NewJFrame2 extends javax.swing.JFrame {
 
         jLabel1.setText("Patient Name");
 
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField2FocusGained(evt);
+            }
+        });
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Age");
 
         jLabel4.setText("Gender");
@@ -88,6 +99,11 @@ public class NewJFrame2 extends javax.swing.JFrame {
         jLabel8.setText("Doctor ID");
 
         jButton1.setText("Care");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
 
@@ -101,6 +117,8 @@ public class NewJFrame2 extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jComboBox1.setEditable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,29 +138,26 @@ public class NewJFrame2 extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addGap(23, 23, 23)
-                                .addComponent(jRadioButton2))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jRadioButton1)
+                            .addGap(23, 23, 23)
+                            .addComponent(jRadioButton2))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(191, 191, 191)
                 .addComponent(jLabel9)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,14 +230,7 @@ public class NewJFrame2 extends javax.swing.JFrame {
                     ph=rs.getInt("phno");
                     gen=rs.getString("gen");
                 }
-                String sql1= "select * from doc;";
-                ResultSet rs1=s.executeQuery(sql1);
-                while(rs1.next())
-                {
-                    String i=rs1.getString("doc_id");
-                    jComboBox1.addItem(i);
-                }
-                
+                                
                 if("f".equals(gen)){
                     jRadioButton2.setSelected(true);
                 }
@@ -234,15 +242,81 @@ public class NewJFrame2 extends javax.swing.JFrame {
                 jTextField3.setText(Integer.toString(age));
                 jTextField4.setText(Integer.toString(w));
                 jTextField5.setText(Integer.toString(ph));
-            } catch (InstantiationException ex) {
-                Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (InstantiationException | IllegalAccessException | SQLException ex) {
                 Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name = null,addr = null;
+        String gen = null;
+        int age = 0,w = 0;
+        long ph;
+                name = jTextField2.getText();
+               addr = jTextArea1.getText();
+                age = Integer.parseInt(jTextField3.getText());
+                w=Integer.parseInt(jTextField4.getText());
+                ph=Integer.parseInt(jTextField5.getText());
+                if(jRadioButton1.isSelected()){
+                    gen = "m";
+                }
+                else{
+                    gen="f";
+                }
+                String docid=(String) jComboBox1.getSelectedItem();
+        try {
+            Statement s1=con.conn();
+            String sql="insert into patient values (NULL,'"+name+"',"+age+","+w+",'"+gen+"','"+addr+"',"+ph+",'to be updated','to be updated');";
+            int d=1;
+            Integer i = null;
+            int exe = s1.executeUpdate(sql);
+            if (exe>-1){
+                String sql1= "select pid from patient where name = '"+name+"' and age = "+age+";";
+                ResultSet rs1=s1.executeQuery(sql1);
+                while(rs1.next())
+                {
+                    
+                    i=rs1.getInt("pid");
+                    System.out.println("pid is "+i);
+                    jTextField1.setText(Integer.toString(i));
+                }
+                String sql2="insert into pat_ses values (NULL,"+i+",'"+name+"',"+age+","+w+",'"+gen+"','"+addr+"',"+ph+",'to be updated',"+docid+");";
+                int exe1= s1.executeUpdate(sql2);
+                if(exe1>-1){
+                    System.out.println("sucess");
+                }
+            }
+        } catch (InstantiationException | IllegalAccessException | SQLException ex) {
+            Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Statement s=con.conn();
+            String sql= "select * from doc;";
+            ResultSet rs=s.executeQuery(sql);
+            while(rs.next()){
+                String i=rs.getString("doc_id");
+                jComboBox1.addItem(i);
+            }
+        } catch (InstantiationException ex) {
+            Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewJFrame2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextField2FocusGained
 
     /**
      * @param args the command line arguments
@@ -274,7 +348,9 @@ public class NewJFrame2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame2().setVisible(true);
+                
+                    new NewJFrame2().setVisible(true);
+                    
             }
         });
     }
