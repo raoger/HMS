@@ -12,13 +12,14 @@ import java.util.Date;
  * @author vi
  */
 public class detail {
-    int token;
-    String pid;
-    String name;
-    int age;
-    Date d;
-    char gen;
-    String pos;
-    double sal;
-    String Addr;
+   private  int token;
+    private String pid;
+    private String name;
+    private int age;
+    private Date d;
+    private char gen;
+    private String pos;
+    private double sal;
+    private String Addr;
+    
 }
